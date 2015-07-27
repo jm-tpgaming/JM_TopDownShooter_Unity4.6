@@ -4,9 +4,12 @@ using System.Collections;
 [RequireComponent (typeof(AudioSource))]
 public class Gun : MonoBehaviour {
 
+	public LayerMask collisionMask; 
 	public enum GunType {Semi,Burst,Auto};
 	public GunType gunType;
 	public float rpm;
+	public float damage = 1;
+
 
 	//Components
 	public Transform spawn;
@@ -32,8 +35,12 @@ public class Gun : MonoBehaviour {
 
 			float shotDistance = 20;
 
-			if (Physics.Raycast (ray, out hit, shotDistance)) {
+			if (Physics.Raycast (ray, out hit, shotDistance, collisionMask)) {
 				shotDistance = hit.distance;
+
+				if(hit.collider.GetComponent<Entity>()) {
+					hit.collider.GetComponent<Entity>().TakeDamage(damage);
+				}
 			}
 
 			nextPossibleShootTime = Time.time + secondsBetweenShots;
