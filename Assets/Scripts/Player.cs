@@ -18,7 +18,7 @@ public class Player : Entity {
 			currentExp -= expToLevel;
 			LevelUp();
 		}
-		Debug.Log ("EXP: " + currentExp + "  Level:  " + level);
+		//Debug.Log ("EXP: " + currentExp + "  Level:  " + level);
 	}
 	private void LevelUp() {
 		level++;

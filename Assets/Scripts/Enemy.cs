@@ -2,17 +2,21 @@
 using System.Collections;
 
 public class Enemy : Entity {
-	
+
+
+	private Player localPlayer;
 	public float expOnDeath;
-	private Player player;
+
 	
+
+
 	void Start() {
-		player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+		localPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 	}
 	
 	
 	public override void Die () {
-		player.AddExp(expOnDeath);
+		localPlayer.AddExp(expOnDeath);
 		base.Die ();
 	}
 }
